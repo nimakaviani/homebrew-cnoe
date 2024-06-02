@@ -6,15 +6,45 @@ class Idpbuilder < Formula
   desc ""
   homepage "https://cnoe.io"
   version "0.4.5"
-  depends_on :linux
 
-  on_intel do
-    if Hardware::CPU.is_64_bit?
-      url "https://github.com/nimakaviani/idpbuilder/releases/download/v0.4.5/idpbuilder-linux-amd64.tar.gz"
-      sha256 "2901581fafc04d873bbd784f4eab9a711931b225ef7625e8a68c22ea65b86b87"
+  on_macos do
+    on_intel do
+      url "https://github.com/nimakaviani/idpbuilder/releases/download/v0.4.5/idpbuilder-darwin-amd64.tar.gz"
+      sha256 "38ef98771049514590381e0944c395f450af5a93c5453a62ab2813a84a0b0223"
 
       def install
         bin.install "idpbuilder"
+      end
+    end
+    on_arm do
+      url "https://github.com/nimakaviani/idpbuilder/releases/download/v0.4.5/idpbuilder-darwin-arm64.tar.gz"
+      sha256 "570e69617a3121c6ad3870dbefa0003dc54f45b9733dbd0938273d819e904679"
+
+      def install
+        bin.install "idpbuilder"
+      end
+    end
+  end
+
+  on_linux do
+    on_intel do
+      if Hardware::CPU.is_64_bit?
+        url "https://github.com/nimakaviani/idpbuilder/releases/download/v0.4.5/idpbuilder-linux-amd64.tar.gz"
+        sha256 "29b7cacf8007cb72c37a32ee7df6c4b1e0836785de4ee975394cea79d6d27302"
+
+        def install
+          bin.install "idpbuilder"
+        end
+      end
+    end
+    on_arm do
+      if Hardware::CPU.is_64_bit?
+        url "https://github.com/nimakaviani/idpbuilder/releases/download/v0.4.5/idpbuilder-linux-arm64.tar.gz"
+        sha256 "5bb945bcbb71d307eace98bd77e1ce39df3543ec18e480c2d2b76a1fcec90a79"
+
+        def install
+          bin.install "idpbuilder"
+        end
       end
     end
   end
